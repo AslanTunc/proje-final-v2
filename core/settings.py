@@ -98,3 +98,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if not DEBUG:
+    INSTALLED_APPS += ['storages']
+    AZURE_ACCOUNT_NAME = os.environ.get('AZURE_STORAGE_ACCOUNT')
+    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_STORAGE_KEY')
+    AZURE_CONTAINER = 'media'
+    
+    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
