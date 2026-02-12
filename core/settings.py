@@ -12,6 +12,11 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*'] 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://best-menu-aslan.azurewebsites.net',
+    'https://best-menu-aslan-hja6a7epfnchekgv.francecentral-01.azurewebsites.net'
+]
+
 
 
 INSTALLED_APPS = [
