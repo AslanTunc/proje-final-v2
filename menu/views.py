@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Category, MenuItem
 
-def index(request):
+def menu_list(request):
     categories = Category.objects.prefetch_related('menuitem_set').all()
     
     context = {
