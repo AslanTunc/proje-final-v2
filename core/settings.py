@@ -106,3 +106,10 @@ if not DEBUG:
     AZURE_CONTAINER = 'media'
     
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+
+
+if 'AZURE_STORAGE_CONNECTION_STRING' in os.environ:
+    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    AZURE_CONNECTION_STRING = os.environ.get('AZURE_STORAGE_CONNECTION_STRING')
+    AZURE_CONTAINER = 'media'
+    MEDIA_URL = f'https://{os.environ.get("AZURE_ACCOUNT_NAME")}.blob.core.windows.net/media/'
