@@ -1,12 +1,10 @@
-from django.contrib import admin
+from django.shortcuts import render
 from .models import Category, MenuItem
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
-
-@admin.register(MenuItem)
-class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'is_available')
-    list_filter = ('category', 'is_available')
-    search_fields = ('name', 'description')
+def index(request):
+    categories = Category.objects.prefetch_related('menuitem_set').all()
+    
+    context = {
+        'categories': categories,
+    }
+    return render(request, 'menu/index.html', context)
